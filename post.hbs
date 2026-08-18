@@ -5,7 +5,27 @@
 
 <main class="gh-main">
 
-    <article class="gh-article {{post_class}}">
+    <article class="gh-article {{post_class}}"
+    style="
+        {{#foreach tags visibility="all"}}
+            {{#match name "#micro"}}
+                {{#if accent_color}}--post-type-color: {{accent_color}};{{/if}}
+            {{/match}}
+
+            {{#match name "#image"}}
+                {{#if accent_color}}--post-type-color: {{accent_color}};{{/if}}
+            {{/match}}
+
+            {{#match name "#link"}}
+                {{#if accent_color}}--post-type-color: {{accent_color}};{{/if}}
+            {{/match}}
+
+            {{#match name "#media"}}
+                {{#if accent_color}}--post-type-color: {{accent_color}};{{/if}}
+            {{/match}}
+        {{/foreach}}
+    "
+>
 
         <header class="gh-article-header gh-canvas">
 

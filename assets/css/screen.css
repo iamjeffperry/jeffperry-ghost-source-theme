@@ -901,8 +901,10 @@ Search                         LOGO                    Login Subscribe
 
 .gh-card {
     position: relative;
+    --post-type-color: #C24E00;
+}
 
-    /* Essay is the default post type when no format tag is present */
+.post-template .gh-article {
     --post-type-color: #C24E00;
 }
 
@@ -2173,6 +2175,11 @@ unless a heading is the very first element in the post content */
     text-decoration: underline;
 }
 
+/* Use the post-type color for links inside posts */
+.post-template .gh-content a {
+    color: var(--post-type-color, var(--ghost-accent-color));
+}
+
 .gh-content .kg-callout-card .kg-callout-text,
 .gh-content .kg-toggle-card .kg-toggle-content > :is(ul, ol, p) {
     font-size: 0.95em;
@@ -3437,4 +3444,22 @@ body[class^="gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-head
 
 .gh-card-title a:hover {
     text-decoration: underline;
+}
+
+/* Make video embeds fill the Media post width */
+.gh-media-content .kg-embed-card iframe[src*="youtube.com"],
+.gh-media-content .kg-embed-card iframe[src*="youtube-nocookie.com"],
+.gh-media-content .kg-embed-card iframe[src*="vimeo.com"] {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9;
+}
+
+/* Let video embed cards use the full available feed width */
+.gh-media-content .kg-embed-card:has(
+    iframe[src*="youtube.com"],
+    iframe[src*="youtube-nocookie.com"],
+    iframe[src*="vimeo.com"]
+) {
+    width: 100%;
 }
