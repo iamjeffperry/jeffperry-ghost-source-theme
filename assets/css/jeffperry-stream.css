@@ -1,0 +1,394 @@
+/*
+ * JeffPerry.me stream layer
+ * Kottke-inspired in philosophy: compact, chronological, mixed-format,
+ * and content-first. This intentionally sits on top of Ghost Source's
+ * built CSS so post pages, Portal, navigation, search, and other Ghost
+ * features continue to use Source's established styling.
+ */
+
+/* ---------- Global rhythm ---------- */
+
+.home-template .gh-viewport {
+    background: var(--background-color);
+}
+
+.home-template .gh-navigation {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.home-template .gh-navigation-inner {
+    min-height: 62px;
+}
+
+.home-template .gh-navigation-logo img {
+    max-height: 34px;
+}
+
+/* ---------- Compact homepage introduction ---------- */
+
+.jp-home-intro {
+    padding-top: clamp(2.4rem, 5vw, 5.2rem);
+    padding-bottom: clamp(2rem, 4vw, 3.8rem);
+}
+
+.jp-home-intro-inner {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2.4rem;
+    max-width: 1040px;
+}
+
+.jp-home-title {
+    margin: 0;
+    font-size: clamp(3.2rem, 5.5vw, 6.4rem);
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    line-height: 0.95;
+}
+
+.jp-home-description {
+    max-width: 680px;
+    margin: 1.2rem 0 0;
+    font-size: clamp(1.6rem, 2vw, 2rem);
+    line-height: 1.45;
+    opacity: 0.72;
+}
+
+.jp-home-tools {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.8rem 1.6rem;
+    padding-bottom: 0.2rem;
+    font-size: 1.35rem;
+    font-weight: 650;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.jp-home-tools a {
+    text-decoration: none;
+}
+
+.jp-home-tools a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+/* ---------- Stream ---------- */
+
+.jp-stream-container {
+    margin-top: 0;
+}
+
+.jp-stream-container .gh-container-inner {
+    display: block;
+    max-width: 1040px;
+}
+
+.jp-stream-main {
+    width: 100%;
+    max-width: none;
+}
+
+.jp-stream {
+    display: block !important;
+    border-top: 2px solid currentColor;
+}
+
+.jp-entry {
+    --jp-meta-width: 145px;
+    display: grid !important;
+    grid-template-columns: var(--jp-meta-width) minmax(0, 1fr);
+    gap: clamp(1.8rem, 3vw, 3.6rem);
+    margin: 0 !important;
+    padding: clamp(2.4rem, 4vw, 4rem) 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+}
+
+.jp-entry + .jp-entry {
+    margin-top: 0 !important;
+}
+
+.jp-entry-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+    padding-top: 0.35rem;
+    font-size: 1.15rem;
+    line-height: 1.35;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+}
+
+.jp-entry-time {
+    color: inherit;
+    font-variant-numeric: tabular-nums;
+    opacity: 0.58;
+    text-decoration: none;
+}
+
+.jp-entry-time:hover {
+    opacity: 1;
+}
+
+.jp-entry-kind {
+    margin-top: 0.45rem;
+    padding-left: 0.8rem;
+    border-left: 3px solid var(--post-type-color, currentColor);
+    font-weight: 750;
+}
+
+.jp-entry-topic {
+    opacity: 0.55;
+}
+
+.jp-entry-body {
+    min-width: 0;
+    max-width: 760px;
+}
+
+.jp-entry-title {
+    margin: 0;
+    font-size: clamp(2.5rem, 3.4vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.06;
+}
+
+.jp-entry-title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.jp-entry-title a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 0.06em;
+    text-underline-offset: 0.1em;
+}
+
+.jp-entry-excerpt,
+.jp-entry-note {
+    margin: 1.2rem 0 0;
+    font-size: clamp(1.7rem, 2vw, 2rem);
+    line-height: 1.55;
+}
+
+.jp-entry.is-short .jp-entry-note {
+    margin-top: 0;
+    font-size: clamp(1.9rem, 2.5vw, 2.35rem);
+    line-height: 1.48;
+}
+
+.jp-entry-read-more {
+    display: inline-block;
+    margin-top: 1.4rem;
+    font-size: 1.35rem;
+    font-weight: 650;
+    text-decoration: none;
+}
+
+.jp-entry-read-more:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+/* ---------- Images ---------- */
+
+.jp-entry-image-link {
+    display: block;
+    margin-bottom: 1.8rem;
+}
+
+.jp-entry-image {
+    margin: 0;
+}
+
+.jp-entry-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 560px;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+.jp-entry.is-image .jp-entry-image img {
+    max-height: none;
+}
+
+/* ---------- Rich Ghost content in link/media/photo entries ---------- */
+
+.jp-entry-content {
+    font-size: 1.75rem;
+    line-height: 1.55;
+}
+
+.jp-entry-title + .jp-entry-content {
+    margin-top: 1.4rem;
+}
+
+.jp-entry-content > :first-child {
+    margin-top: 0;
+}
+
+.jp-entry-content > :last-child {
+    margin-bottom: 0;
+}
+
+.jp-entry-content p {
+    margin: 0 0 1.1em;
+}
+
+.jp-entry-content a {
+    text-decoration-thickness: 0.06em;
+    text-underline-offset: 0.14em;
+}
+
+.jp-entry-content figure,
+.jp-entry-content .kg-card {
+    margin-top: 1.6rem;
+    margin-bottom: 1.6rem;
+}
+
+/* Bookmark cards should feel like a compact outward-link unit. */
+.jp-entry-link-content .kg-bookmark-card {
+    margin: 0;
+}
+
+.jp-entry-link-content .kg-bookmark-container {
+    min-height: 0;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.jp-entry-link-content .kg-bookmark-content {
+    padding: 1.6rem 1.8rem;
+}
+
+.jp-entry-link-content .kg-bookmark-title {
+    font-size: clamp(1.9rem, 2.5vw, 2.6rem);
+    line-height: 1.15;
+}
+
+.jp-entry-link-content .kg-bookmark-description {
+    margin-top: 0.6rem;
+    font-size: 1.45rem;
+    line-height: 1.45;
+}
+
+.jp-entry-link-content .kg-bookmark-thumbnail {
+    min-width: 180px;
+    max-width: 240px;
+}
+
+/* Embedded media is allowed to be the visual focus. */
+.jp-entry-media-content iframe,
+.jp-entry-media-content video,
+.jp-entry-media-content audio {
+    max-width: 100%;
+}
+
+/* ---------- Density by post type ---------- */
+
+.jp-entry.is-short,
+.jp-entry.is-link {
+    padding-top: clamp(1.9rem, 3vw, 2.8rem);
+    padding-bottom: clamp(1.9rem, 3vw, 2.8rem);
+}
+
+.jp-entry.is-link .jp-entry-body,
+.jp-entry.is-short .jp-entry-body {
+    max-width: 720px;
+}
+
+/* ---------- Pagination ---------- */
+
+.jp-more-posts {
+    margin: 3.2rem 0 0;
+    padding: 2rem 0 0;
+    border-top: 2px solid currentColor;
+    text-align: left;
+}
+
+.jp-more-posts a {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* ---------- Dark backgrounds ---------- */
+
+.has-light-text .home-template .gh-navigation,
+.has-light-text .jp-entry,
+.has-light-text .jp-entry-link-content .kg-bookmark-container {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ---------- Tablet / phone ---------- */
+
+@media (max-width: 767px) {
+    .home-template .gh-navigation-inner {
+        min-height: 56px;
+    }
+
+    .jp-home-intro {
+        padding-top: 2.4rem;
+        padding-bottom: 2.2rem;
+    }
+
+    .jp-home-intro-inner {
+        display: block;
+    }
+
+    .jp-home-title {
+        font-size: clamp(3.6rem, 12vw, 5rem);
+    }
+
+    .jp-home-description {
+        margin-top: 0.9rem;
+    }
+
+    .jp-home-tools {
+        justify-content: flex-start;
+        margin-top: 1.6rem;
+        padding: 0;
+        font-size: 1.2rem;
+    }
+
+    .jp-entry {
+        display: block !important;
+        padding: 2.4rem 0;
+    }
+
+    .jp-entry-meta {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.55rem 0.9rem;
+        margin-bottom: 1.15rem;
+    }
+
+    .jp-entry-kind {
+        margin-top: 0;
+    }
+
+    .jp-entry-title {
+        font-size: clamp(2.5rem, 8vw, 3.4rem);
+    }
+
+    .jp-entry-link-content .kg-bookmark-container {
+        flex-direction: column;
+    }
+
+    .jp-entry-link-content .kg-bookmark-thumbnail {
+        width: 100%;
+        min-width: 100%;
+        max-width: none;
+        aspect-ratio: 16 / 9;
+        order: -1;
+    }
+}
