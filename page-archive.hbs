@@ -1,0 +1,67 @@
+{{!< default}}
+
+<style>
+    .gh-archive-page {
+        padding-top: clamp(2.5rem, 6vw, 5rem);
+        padding-bottom: clamp(4rem, 8vw, 8rem);
+    }
+
+    .gh-archive-header {
+        max-width: 760px;
+        margin-bottom: clamp(2rem, 5vw, 4rem);
+    }
+
+    .gh-archive-kicker {
+        margin: 0 0 0.75rem;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        opacity: 0.6;
+    }
+
+    .gh-archive-title {
+        margin: 0;
+        font-size: clamp(3.2rem, 6vw, 5.6rem);
+        line-height: 1;
+        letter-spacing: -0.04em;
+    }
+
+    .gh-archive-description {
+        max-width: 680px;
+        margin: 1.25rem 0 0;
+        font-size: 1.8rem;
+        line-height: 1.5;
+        opacity: 0.72;
+    }
+
+    .gh-archive-stream .gh-feed {
+        width: 100%;
+    }
+</style>
+
+<main class="gh-archive-page gh-outer">
+    <div class="gh-inner">
+
+        <header class="gh-archive-header">
+            <p class="gh-archive-kicker">Archive</p>
+            <h1 class="gh-archive-title is-title">Everything, newest to oldest.</h1>
+            <p class="gh-archive-description is-body">
+                A chronological archive of posts, links, notes, images, and media published on {{@site.title}}.
+            </p>
+        </header>
+
+        <section class="gh-container is-list gh-archive-stream">
+            <main class="gh-main">
+                <div class="gh-feed">
+                    {{#get "posts" include="authors,tags" limit="all" order="published_at desc"}}
+                        {{#foreach posts}}
+                            {{> "post-card" lazyLoad=true}}
+                        {{/foreach}}
+                    {{/get}}
+                </div>
+            </main>
+        </section>
+
+    </div>
+</main>
