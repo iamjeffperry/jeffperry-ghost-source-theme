@@ -90,11 +90,9 @@
         {{/if}}
 
         {{#has tag="#micro"}}
-            {{#if custom_excerpt}}
-                <div class="jp-entry-note is-body">{{custom_excerpt}}</div>
-            {{else}}
-                <div class="jp-entry-note is-body">{{excerpt words="80"}}</div>
-            {{/if}}
+            <div class="jp-entry-note jp-entry-content is-body">
+                {{content}}
+            </div>
 
         {{else}}
             {{#has tag="#link"}}
