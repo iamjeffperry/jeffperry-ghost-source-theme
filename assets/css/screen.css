@@ -3391,6 +3391,16 @@ body[class^="gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-head
     line-height: 1.35;
 }
 
+/* Preserve normal content spacing inside link posts on the feed */
+.gh-link-content > * + * {
+    margin-top: 1.5em;
+}
+
+/* Preserve spacing between paragraphs inside blockquotes */
+.gh-link-content blockquote > * + * {
+    margin-top: 1em;
+}
+
 .gh-card-type {
     margin: 0 0 0.8rem;
     color: var(--post-type-color, currentColor);
