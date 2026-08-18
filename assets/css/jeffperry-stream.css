@@ -182,6 +182,40 @@
     line-height: 1.48;
 }
 
+/* Micro posts render their real Ghost content in the feed, so preserve
+   paragraph and list structure instead of flattening everything to an excerpt. */
+.jp-entry.is-short .jp-entry-note > :first-child {
+    margin-top: 0;
+}
+
+.jp-entry.is-short .jp-entry-note > :last-child {
+    margin-bottom: 0;
+}
+
+.jp-entry.is-short .jp-entry-note ol,
+.jp-entry.is-short .jp-entry-note ul {
+    margin: 0 0 1em;
+    padding-left: 1.55em;
+}
+
+.jp-entry.is-short .jp-entry-note ol {
+    list-style: decimal;
+}
+
+.jp-entry.is-short .jp-entry-note ul {
+    list-style: disc;
+}
+
+.jp-entry.is-short .jp-entry-note li + li {
+    margin-top: 0.35em;
+}
+
+.jp-entry.is-short .jp-entry-note li > ol,
+.jp-entry.is-short .jp-entry-note li > ul {
+    margin-top: 0.35em;
+    margin-bottom: 0;
+}
+
 .jp-entry-read-more {
     display: inline-block;
     margin-top: 1.4rem;
