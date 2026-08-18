@@ -901,6 +901,9 @@ Search                         LOGO                    Login Subscribe
 
 .gh-card {
     position: relative;
+
+    /* Essay is the default post type when no format tag is present */
+    --post-type-color: #C24E00;
 }
 
 .gh-card-link {
@@ -1813,7 +1816,8 @@ Search                         LOGO                    Login Subscribe
 
 /* 12.3. No image list */
 
-.gh-container.is-list.no-image .gh-card-image {
+.gh-container.is-list.no-image .gh-card-image,
+.gh-container.is-list.no-image .gh-card-image-link {
     display: none;
 }
 
@@ -2346,7 +2350,7 @@ unless a heading is the very first element in the post content */
 
 blockquote:not([class]) {
     padding-left: 2rem;
-    border-left: 4px solid var(--ghost-accent-color);
+    border-left: 4px solid var(--post-type-color,currentColor);
 }
 
 blockquote.kg-blockquote-alt {
@@ -3391,13 +3395,15 @@ body[class^="gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-head
     line-height: 1.35;
 }
 
-/* Preserve normal content spacing inside link posts on the feed */
-.gh-link-content > * + * {
+/* Preserve normal content spacing inside link and media posts on the feed */
+.gh-link-content > * + *,
+.gh-media-content > * + * {
     margin-top: 1.5em;
 }
 
 /* Preserve spacing between paragraphs inside blockquotes */
-.gh-link-content blockquote > * + * {
+.gh-link-content blockquote > * + *,
+.gh-media-content blockquote > * + * {
     margin-top: 1em;
 }
 

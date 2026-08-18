@@ -1,5 +1,5 @@
 <article
-    class="gh-card {{post_class}}{{#has tag="#micro"}} is-short{{/has}}{{#has tag="#image"}} is-image{{/has}}{{#has tag="#link"}} is-link{{/has}}{{#unless @custom.show_images_in_feed}} no-image{{/unless}}"
+    class="gh-card {{post_class}}{{#has tag="#micro"}} is-short{{/has}}{{#has tag="#image"}} is-image{{/has}}{{#has tag="#link"}} is-link{{/has}}{{#has tag="#media"}} is-media{{/has}}{{#unless @custom.show_images_in_feed}} no-image{{/unless}}"
     style="
         {{#foreach tags visibility="all"}}
             {{#match name "#micro"}}
@@ -11,6 +11,9 @@
             {{/match}}
 
             {{#match name "#link"}}
+                {{#if accent_color}}--post-type-color: {{accent_color}};{{/if}}
+            {{/match}}
+            {{#match name "#media"}}
                 {{#if accent_color}}--post-type-color: {{accent_color}};{{/if}}
             {{/match}}
         {{/foreach}}
@@ -41,17 +44,23 @@
 
         <div class="gh-card-wrapper">
 
-            {{!-- Post type labels --}}
+            {{!-- Post type label --}}
             {{#has tag="#micro"}}
                 <p class="gh-card-type">Micro</p>
-            {{/has}}
-
-            {{#has tag="#image"}}
-                <p class="gh-card-type">Photo</p>
-            {{/has}}
-
-            {{#has tag="#link"}}
-                <p class="gh-card-type">Link</p>
+            {{else}}
+                {{#has tag="#image"}}
+                    <p class="gh-card-type">Photo</p>
+                {{else}}
+                    {{#has tag="#link"}}
+                        <p class="gh-card-type">Link</p>
+                    {{else}}
+                        {{#has tag="#media"}}
+                            <p class="gh-card-type">Media</p>
+                        {{else}}
+                            <p class="gh-card-type">Essay</p>
+                        {{/has}}
+                    {{/has}}
+                {{/has}}
             {{/has}}
 
             {{!-- Public tag, if one exists --}}
@@ -85,27 +94,37 @@
 
             {{else}}
 
-                {{#has tag="#image"}}
+                {{#has tag="#media"}}
 
-                    <div class="gh-image-content">
+                    <div class="gh-media-content">
                         {{content}}
                     </div>
 
                 {{else}}
 
-                    {{#if custom_excerpt}}
-                        <p class="gh-card-excerpt is-body{{#has tag="#micro"}} is-short-excerpt{{/has}}">
-                            {{custom_excerpt}}
-                        </p>
-                    {{/if}}
+                    {{#has tag="#image"}}
 
-                    {{#unless custom_excerpt}}
-                        {{#if excerpt}}
+                        <div class="gh-image-content">
+                            {{content}}
+                        </div>
+
+                    {{else}}
+
+                        {{#if custom_excerpt}}
                             <p class="gh-card-excerpt is-body{{#has tag="#micro"}} is-short-excerpt{{/has}}">
-                                {{excerpt}}
+                                {{custom_excerpt}}
                             </p>
                         {{/if}}
-                    {{/unless}}
+
+                        {{#unless custom_excerpt}}
+                            {{#if excerpt}}
+                                <p class="gh-card-excerpt is-body{{#has tag="#micro"}} is-short-excerpt{{/has}}">
+                                    {{excerpt}}
+                                </p>
+                            {{/if}}
+                        {{/unless}}
+
+                    {{/has}}
 
                 {{/has}}
 
