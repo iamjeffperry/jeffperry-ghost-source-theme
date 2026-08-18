@@ -14,8 +14,11 @@
     {{!-- Fonts are preloaded and defined in the default template to avoid layout shift --}}
     {{> "typography/fonts"}}
 
-    {{!-- Theme assets - use the {{asset}} helper to reference styles & scripts, this will take care of caching and cache-busting automatically --}}
+    {{!-- Original Source theme styles --}}
     <link rel="stylesheet" type="text/css" href="{{asset "built/screen.css"}}">
+
+    {{!-- JeffPerry.me stream overrides. Kept separate so Source stays maintainable. --}}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/jeffperry-stream.css"}}">
 
     {{!-- Custom background color --}}
     <style>
@@ -43,7 +46,7 @@
         document.documentElement.className = `has-${textColor}-text`;
     </script>
 
-    {{!-- This tag outputs all your advanced SEO meta, structured data, and other important settings, it should always be the last tag before the closing head tag --}}
+    {{!-- Ghost SEO, structured data, integrations, and other required head output --}}
     {{ghost_head}}
 
 </head>
@@ -66,7 +69,7 @@
 {{!-- Scripts - handle responsive videos, infinite scroll, and navigation dropdowns --}}
 <script src="{{asset "built/source.js"}}"></script>
 
-{{!-- Ghost outputs required functional scripts with this tag, it should always be the last thing before the closing body tag --}}
+{{!-- Ghost outputs required functional scripts with this tag --}}
 {{ghost_foot}}
 
 </body>
